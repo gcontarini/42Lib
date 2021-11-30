@@ -75,7 +75,7 @@ PTF		=	ft_printf.c			\
 			ftptf_uphex.c		\
 
 ############## STACK FILES #############
-STK		=	
+STK		=	ft_stack.c	
 
 ################ PATHS #################
 INC		= -I includes/
@@ -86,7 +86,7 @@ OBJS 	= 	$(addprefix $(POBJS)/, $(CORE:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(LLST:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(PTF:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(GNL:.c=.o))
-#OBJS 	+= 	$(addprefix $(POBJS)/, $(STK:.c=.o))
+OBJS 	+= 	$(addprefix $(POBJS)/, $(STK:.c=.o))
 
 ############### TARGET #################
 NAME 	= 	libft.a
