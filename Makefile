@@ -75,7 +75,8 @@ PTF		=	ft_printf.c			\
 			ftptf_uphex.c		\
 
 ############## STACK FILES #############
-STK		=	ft_stack.c	
+STK		=	ft_stack.c			\
+			ft_stack_move.c
 
 ################ PATHS #################
 INC		= -I includes/
