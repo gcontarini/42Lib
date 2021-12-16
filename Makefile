@@ -86,6 +86,9 @@ STK		=	ft_clean_istack.c	\
 			ft_rrot_istack.c	\
 			ft_start_istack.c	\
 			ft_swap_istack.c	\
+			ft_addbase_istack.c	\
+			ft_cpy_istack.c		\
+			ft_sort_istack.c	\
 			ft_swapi_istack.c
 
 ################ PATHS #################
