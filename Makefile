@@ -75,8 +75,18 @@ PTF		=	ft_printf.c			\
 			ftptf_uphex.c		\
 
 ############## STACK FILES #############
-STK		=	ft_stack.c			\
-			ft_stack_move.c
+STK		=	ft_clean_istack.c	\
+			ft_len_istack.c		\
+			ft_mvto_istack.c	\
+			ft_peek_istack.c	\
+			ft_pop_istack.c		\
+			ft_print_istack.c	\
+			ft_push_istack.c	\
+			ft_rot_istack.c		\
+			ft_rrot_istack.c	\
+			ft_start_istack.c	\
+			ft_swap_istack.c	\
+			ft_swapi_istack.c
 
 ################ PATHS #################
 INC		= -I includes/
