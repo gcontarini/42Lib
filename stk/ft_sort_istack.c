@@ -6,16 +6,17 @@
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:50:06 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/16 18:39:48 by gcontari         ###   ########.fr       */
+/*   Updated: 2021/12/17 11:24:21 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
+#include "libft.h"
 
 static void	istack2arr(t_istack *stack, int *arr, size_t len);
 static void	arr2istack(int *arr, t_istack *stack, size_t len);
-static void	mergesort_int(int *arr, size_t len);
-static void	merge_int(int *arr, size_t len);
+static int	mergesort_int(int *arr, size_t len);
+static int	merge_int(int *arr, size_t len);
 
 t_istack	*ft_sort_istack(t_istack *stack)
 {
@@ -29,7 +30,11 @@ t_istack	*ft_sort_istack(t_istack *stack)
 	if (!arr)
 		return (NULL);
 	istack2arr(stack, arr, len);
-	mergesort_int(arr, len);
+	if (!mergesort_int(arr, len))
+	{
+		free(arr);
+		return (NULL);
+	}
 	arr2istack(arr, stack, len);
 	free(arr);
 	return (stack);
@@ -65,41 +70,43 @@ static void	arr2istack(int *arr, t_istack *stack, size_t len)
 	return ;
 }
 
-static void	mergesort_int(int *arr, size_t len)
+static int	mergesort_int(int *arr, size_t len)
 {
 	if (len <= 1)
-		return ;
+		return (1);
 	mergesort_int(arr, len / 2);
 	if (len % 2 == 0)
 		mergesort_int(arr + (len / 2), (len / 2));
 	else
 		mergesort_int(arr + (len / 2), (len / 2) + 1);
-	merge_int(arr, len);
+	if (!merge_int(arr, len))
+		return (0);
+	return (1);
 }
 
-static void	merge_int(int *arr, size_t len)
+static int	merge_int(int *arr, size_t len)
 {
-	int		merged[10000];
+	int		*merged;
 	size_t	i;
 	size_t	j;
-	size_t	k;
 
+	merged = (int *) malloc(len * sizeof(int));
+	if (!merged)
+		return (0);
 	i = 0;
 	j = len / 2;
-	k = 0;
 	while (i < len / 2 && j < len)
 	{
 		if (arr[i] < arr[j])
-			merged[k++] = arr[i++];
+			*merged++ = arr[i++];
 		else
-			merged[k++] = arr[j++];
+			*merged++ = arr[j++];
 	}
 	while (i < len / 2)
-		merged[k++] = arr[i++];
+		*merged++ = arr[i++];
 	while (j < len)
-		merged[k++] = arr[j++];
-	k = 0;
-	i = 0;
-	while (k < len)
-		arr[i++] = merged[k++];
+		*merged++ = arr[j++];
+	ft_memcpy(arr, merged - j, len * sizeof(int));
+	free(merged - j);
+	return (1);
 }
