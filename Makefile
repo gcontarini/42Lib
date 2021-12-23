@@ -74,21 +74,24 @@ PTF		=	ft_printf.c			\
 			ftptf_uphex.c		\
 
 ############## STACK FILES #############
-STK		=	ft_clean_istack.c	\
-			ft_len_istack.c		\
-			ft_mvto_istack.c	\
-			ft_peek_istack.c	\
-			ft_pop_istack.c		\
-			ft_print_istack.c	\
-			ft_push_istack.c	\
-			ft_rot_istack.c		\
-			ft_rrot_istack.c	\
-			ft_start_istack.c	\
-			ft_swap_istack.c	\
-			ft_addbase_istack.c	\
-			ft_cpy_istack.c		\
-			ft_sort_istack.c	\
-			ft_swapi_istack.c
+STK		=	ft_istkclean.c	\
+			ft_istkpeek.c	\
+			ft_istkprint.c	\
+			ft_istksort.c	\
+			ft_stkclean.c	\
+			ft_stkcpy.c		\
+			ft_stkcpyn.c	\
+			ft_stkget.c		\
+			ft_stklen.c		\
+			ft_stkpop.c		\
+			ft_stkposh.c	\
+			ft_stkpush.c	\
+			ft_stkrot.c		\
+			ft_stkrpush.c	\
+			ft_stkrrot.c	\
+			ft_stkstart.c	\
+			ft_stkswap.c	\
+			ft_stkswapn.c
 
 ################ PATHS #################
 INC		= -I includes/

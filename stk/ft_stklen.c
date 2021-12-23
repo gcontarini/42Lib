@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_len_istack.c                                    :+:      :+:    :+:   */
+/*   ft_stklen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 10:30:18 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/16 10:57:05 by gcontari         ###   ########.fr       */
+/*   Created: 2021/12/23 17:54:49 by gcontari          #+#    #+#             */
+/*   Updated: 2021/12/23 17:55:36 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-size_t	ft_len_istack(t_istack *stack)
+size_t	ft_stklen(t_stack *stack)
 {
-	t_isunit	*curr;
-	size_t		len;
+	t_stack_unit	*curr;
+	size_t			len;
 
 	len = 0;
 	if (!stack)
@@ -24,7 +24,7 @@ size_t	ft_len_istack(t_istack *stack)
 	while (curr)
 	{
 		len++;
-		curr = curr->last;
+		curr = curr->next;
 	}
 	return (len);
 }

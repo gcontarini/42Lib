@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_istack.c                                  :+:      :+:    :+:   */
+/*   ft_stkpop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 10:14:35 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/16 10:15:08 by gcontari         ###   ########.fr       */
+/*   Created: 2021/12/23 17:52:14 by gcontari          #+#    #+#             */
+/*   Updated: 2021/12/23 19:21:51 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
-#include "ft_printf.h"
 
-void	ft_print_istack(t_istack *stack)
+t_stack_unit	ft_stkpop(t_stack *stack)
 {
-	int			i;
-	t_isunit	*curr;
+	t_stack_unit	*tmp;
+	t_stack_unit	pop;
 
+	pop.content = NULL;
+	pop.next = NULL;
 	if (!stack || !stack->top)
-		return ;
-	i = 0;
-	curr = stack->top;
-	ft_printf("/\t*******************\n");
-	while (curr)
-	{
-		ft_printf("|\tIndex: %i -> value %i\t|\n", i++, curr->i);
-		curr = curr->last;
-	}
-	ft_printf("\\\t*******************\n");
-	return ;
+		return (pop);
+	pop = *(stack->top);
+	tmp = stack->top;
+	stack->top = stack->top->next;
+	free(tmp);
+	return (pop);
 }

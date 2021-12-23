@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mvto_istack.c                                   :+:      :+:    :+:   */
+/*   ft_stkposh.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 10:20:01 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/16 10:24:57 by gcontari         ###   ########.fr       */
+/*   Created: 2021/12/23 18:33:56 by gcontari          #+#    #+#             */
+/*   Updated: 2021/12/23 18:35:06 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-void	ft_mvto_istack(t_istack *src, t_istack *dst)
+int	ft_stkposh(t_stack *src, t_stack *dst)
 {
-	t_isunit	*tmp;
+	t_stack_unit	*tmp;
 
 	if (!dst || !src || !src->top)
-		return ;
+		return (0);
 	tmp = src->top;
-	src->top = src->top->last;
+	src->top = src->top->next;
 	if (!src->top)
 		src->base = NULL;
 	if (dst->top)
 	{
-		tmp->last = dst->top;
+		tmp->next = dst->top;
 		dst->top = tmp;
-		return ;
+		return (1);
 	}
 	dst->top = tmp;
 	dst->base = tmp;
-	tmp->last = NULL;
-	return ;
+	tmp->next = NULL;
+	return (1);
 }

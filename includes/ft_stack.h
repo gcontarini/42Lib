@@ -6,7 +6,7 @@
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 18:49:36 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/16 18:37:25 by gcontari         ###   ########.fr       */
+/*   Updated: 2021/12/23 19:19:19 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,36 @@
 
 # include <stddef.h>
 # include <stdlib.h>
+# include "libft.h"
 
-typedef struct s_int_stack_unit
-{
-	int						i;
-	struct s_int_stack_unit	*last;
-}	t_isunit;
+typedef t_list	t_stack_unit;
 
-typedef struct s_int_stack
+typedef struct s_stack
 {
-	t_isunit	*top;
-	t_isunit	*base;
-}	t_istack;
+	t_stack_unit	*top;
+	t_stack_unit	*base;
+}	t_stack;
+
+// stack
+t_stack			*ft_stkstart(void);
+t_stack			*ft_stkpush(t_stack *stack, void *p);
+t_stack			*ft_stkrpush(t_stack *stack, void *p);
+t_stack			*ft_stkcpy(t_stack *stack, void (*del)(void *));
+t_stack			*ft_stkcpyn(t_stack *stack, size_t n, void (*del)(void *));
+t_stack_unit	*ft_stkget(t_stack *stack, size_t n);
+t_stack_unit	ft_stkpop(t_stack *stack);
+size_t			ft_stklen(t_stack *stack);
+void			ft_stkclean(t_stack *stack, void (*del)(void *));
+int				ft_stkswap(t_stack *stack);
+int				ft_stkswapn(t_stack *stack, size_t n);
+int				ft_stkrot(t_stack *stack);
+int				ft_stkrrot(t_stack *stack);
+int				ft_stkposh(t_stack *src, t_stack *dst);
 
 // integer stack
-t_istack	*ft_start_istack(void);
-t_istack	*ft_push_istack(t_istack *stack, int i);
-t_istack	*ft_addbase_istack(t_istack *stk, int i);
-t_istack	*ft_cpy_istack(t_istack *stk);
-t_isunit	*ft_peek_istack(t_istack *stack, size_t index);
-t_isunit	ft_pop_istack(t_istack *stack);
-size_t		ft_len_istack(t_istack *stack);
-void		ft_print_istack(t_istack *stack);
-void		ft_clean_istack(t_istack *stack);
-void		ft_swap_istack(t_istack *stack);
-void		ft_swapi_istack(t_istack *stack, size_t index);
-void		ft_rot_istack(t_istack *stack);
-void		ft_rrot_istack(t_istack *stack);
-void		ft_mvto_istack(t_istack *src, t_istack *dst);
-t_istack	*ft_sort_istack(t_istack *stack);
+t_stack			*ft_istksort(t_stack *stack);
+void			ft_istkprint(t_stack *stack);
+void			ft_istkclean(t_stack *stack);
+int				ft_istkpeek(t_stack *stack, size_t n);
 
 #endif

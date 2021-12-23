@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rrot_istack.c                                   :+:      :+:    :+:   */
+/*   ft_stkcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 10:19:12 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/17 15:17:23 by gcontari         ###   ########.fr       */
+/*   Created: 2021/12/23 17:43:28 by gcontari          #+#    #+#             */
+/*   Updated: 2021/12/23 19:18:39 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-void	ft_rrot_istack(t_istack *stack)
+t_stack	*ft_stkcpy(t_stack *stack, void (*del)(void *))
 {
-	t_isunit	*top;
-	t_isunit	*curr;
+	t_stack			*new_stk;
+	t_stack_unit	*curr;
 
-	if (!stack || !stack->top || !stack->base || !stack->top->last)
-		return ;
-	top = stack->top;
-	curr = top;
-	while (curr->last->last)
-		curr = curr->last;
-	curr->last = NULL;
-	stack->top = stack->base;
-	stack->base->last = top;
-	stack->base = curr;
-	return ;
+	new_stk = ft_stkstart();
+	if (!new_stk)
+		return (NULL);
+	curr = stack->top;
+	while (curr)
+	{
+		if (!ft_stkrpush(new_stk, curr->content))
+		{
+			ft_stkclean(new_stk, del);
+			return (NULL);
+		}
+		curr = curr->next;
+	}
+	return (new_stk);
 }

@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rot_istack.c                                    :+:      :+:    :+:   */
+/*   ft_stkrpush.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 10:18:07 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/16 10:19:00 by gcontari         ###   ########.fr       */
+/*   Created: 2021/12/23 17:38:45 by gcontari          #+#    #+#             */
+/*   Updated: 2021/12/23 17:42:36 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-void	ft_rot_istack(t_istack *stack)
+t_stack	*ft_stkrpush(t_stack *stack, void *p)
 {
-	t_isunit	*top;
-	t_isunit	*base;
+	t_stack_unit	*tmp;
 
-	if (!stack || !stack->top || !stack->base || !stack->top->last)
-		return ;
-	top = stack->top;
-	stack->top = stack->top->last;
-	base = stack->base;
-	top->last = NULL;
-	base->last = top;
-	stack->base = top;
-	return ;
+	if (!stack)
+		return (NULL);
+	tmp = (t_stack_unit *) malloc(sizeof(t_stack_unit));
+	if (!tmp)
+		return (NULL);
+	tmp->content = p;
+	tmp->next = NULL;
+	if (stack->base)
+	{
+		stack->base->next = tmp;
+		stack->base = tmp;
+		return (stack);
+	}
+	stack->base = tmp;
+	if (!stack->top)
+		stack->top = tmp;
+	return (stack);
 }

@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cpy_istack.c                                    :+:      :+:    :+:   */
+/*   ft_istkpeek.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 11:31:03 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/16 11:48:02 by gcontari         ###   ########.fr       */
+/*   Created: 2021/12/23 18:47:41 by gcontari          #+#    #+#             */
+/*   Updated: 2021/12/23 18:49:37 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-t_istack	*ft_cpy_istack(t_istack *stk)
+int	ft_istkpeek(t_stack *stack, size_t n)
 {
-	t_istack	*new_stk;
-	t_isunit	*curr;
+	t_stack_unit	*curr;
 
-	new_stk = ft_start_istack();
-	if (!new_stk)
-		return (NULL);
-	curr = stk->top;
-	while (curr)
-	{
-		if (!ft_addbase_istack(new_stk, curr->i))
-		{
-			ft_clean_istack(new_stk);
-			return (NULL);
-		}
-		curr = curr->last;
-	}
-	return (new_stk);
+	curr = ft_stkget(stack, n);
+	return (*((int *) curr->content));
 }

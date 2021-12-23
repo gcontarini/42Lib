@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_peek_istack.c                                   :+:      :+:    :+:   */
+/*   ft_stkswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 10:13:56 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/16 11:12:47 by gcontari         ###   ########.fr       */
+/*   Created: 2021/12/23 17:56:53 by gcontari          #+#    #+#             */
+/*   Updated: 2021/12/23 18:08:06 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-t_isunit	*ft_peek_istack(t_istack *stack, size_t index)
+int	ft_stkwap(t_stack *stack)
 {
-	t_isunit	*curr;
+	t_stack_unit	*top;
+	t_stack_unit	*l1;
 
 	if (!stack || !stack->top)
-		return (NULL);
-	curr = stack->top;
-	while (curr && index != 0 && index-- > 0)
-		curr = curr->last;
-	return (curr);
+		return (0);
+	top = stack->top;
+	if (!top->next)
+		return (0);
+	l1 = top->next;
+	top->next = l1->next;
+	l1->next = top;
+	stack->top = l1;
+	if (!top->next)
+		stack->base = top;
+	return (1);
 }
