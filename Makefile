@@ -55,8 +55,7 @@ LLST	=	ft_lstadd_back.c	\
 			ft_lstsize.c
 
 ############### GNL FILES ###############
-GNL		=	get_next_line.c 		\
-			get_next_line_utils.c
+GNL		=	get_next_line.c
 
 ############## PRINTF FILES #############
 PTF		=	ft_printf.c			\
