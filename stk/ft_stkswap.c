@@ -12,7 +12,7 @@
 
 #include "ft_stack.h"
 
-int	ft_stkwap(t_stack *stack)
+int	ft_stkswap(t_stack *stack)
 {
 	t_stack_unit	*top;
 	t_stack_unit	*l1;

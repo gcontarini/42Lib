@@ -94,7 +94,7 @@ STK		=	ft_istkclean.c	\
 			ft_stkswapn.c
 
 ################ PATHS #################
-INC		= -I includes/
+INC	= -I includes/
 POBJS	= obj
 
 ############### ALL OBJS ###############
@@ -108,26 +108,27 @@ OBJS 	+= 	$(addprefix $(POBJS)/, $(STK:.c=.o))
 NAME 	= 	libft.a
 
 ############# COMPILER OPTS ############
-CC 		= 	gcc 
+CC 	= 	gcc 
 CFLAGS	= 	-Wall -Werror -Wextra
-RM		= 	rm -f
-AR		=	ar rcs
+RM	= 	rm -f
+AR	=	ar rcs
 
 ################ RULES #################
 $(POBJS)/%.o : */%.c
-			$(CC) $(CFLAGS) -c $(INC) $< -o $@
+	@mkdir -p $(POBJS)/
+	$(CC) $(CFLAGS) -c $(INC) $< -o $@
 
 $(NAME)	: $(OBJS)
-		$(AR) $@ $^
+	$(AR) $@ $^
 
-all		: $(NAME)
+all	: $(NAME)
 
 clean	:
-		$(RM) $(OBJS)
+	$(RM) $(OBJS)
 
 fclean	: clean
-		$(RM) $(NAME)
+	$(RM) $(NAME)
 
-re		: fclean all
+re	: fclean all
 
 .PHONY	: all clean fclean re 

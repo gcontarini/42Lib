@@ -12,10 +12,11 @@
 
 #include "ft_stack.h"
 
-t_stack	*ft_stkcpyn(t_stack *stack, size_t n, void (*del)(void *))
+t_stack	*ft_stkcpyn(t_stack *stack, void *(*cpy)(void *), size_t n, void (*del)(void *))
 {
 	t_stack			*new_stk;
 	t_stack_unit	*curr;
+	void		*p;
 
 	new_stk = ft_stkstart();
 	if (!new_stk)
@@ -23,7 +24,8 @@ t_stack	*ft_stkcpyn(t_stack *stack, size_t n, void (*del)(void *))
 	curr = stack->top;
 	while (curr && n--)
 	{
-		if (!ft_stkrpush(new_stk, curr->content))
+		p = cpy(curr->content);
+		if (!p || !ft_stkrpush(new_stk, p))
 		{
 			ft_stkclean(new_stk, del);
 			return (NULL);
