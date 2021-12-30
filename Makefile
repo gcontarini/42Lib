@@ -54,6 +54,17 @@ LLST	=	ft_lstadd_back.c	\
 			ft_lstnew.c			\
 			ft_lstsize.c
 
+########### DOUBLE LIST FILES ###########
+DLST	=	ft_dlstadd_back.c	\
+		ft_dlstadd_front.c	\
+		ft_dlstclear.c	\
+		ft_dlstdelone.c	\
+		ft_dlstiter.c	\
+		ft_dlstlast.c	\
+		ft_dlstmap.c	\
+		ft_dlstnew.c	\
+		ft_dlstsize.c
+
 ############### GNL FILES ###############
 GNL		=	get_next_line.c
 
@@ -100,6 +111,7 @@ POBJS	= obj
 ############### ALL OBJS ###############
 OBJS 	= 	$(addprefix $(POBJS)/, $(CORE:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(LLST:.c=.o))
+OBJS 	+= 	$(addprefix $(POBJS)/, $(DLST:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(PTF:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(GNL:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(STK:.c=.o))
@@ -123,6 +135,24 @@ $(NAME)	: $(OBJS)
 
 all	: $(NAME)
 
+core	: $(addprefix $(POBJS)/, $(CORE:.c=.o))
+	$(AR) $(NAME) $^
+
+lst	: libft $(addprefix $(POBJS)/, $(LLST:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(LLST:.c=.o))
+
+dlst	: libft $(addprefix $(POBJS)/, $(DLST:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(DLST:.c=.o))
+
+gnl	: libft $(addprefix $(POBJS)/, $(GNL:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(GNL:.c=.o))
+
+printf	: libft $(addprefix $(POBJS)/, $(PTF:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(PTF:.c=.o))
+
+stk	: libft lst $(addprefix $(POBJS)/, $(STK:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(STK:.c=.o))
+
 clean	:
 	$(RM) $(OBJS)
 
@@ -131,4 +161,4 @@ fclean	: clean
 
 re	: fclean all
 
-.PHONY	: all clean fclean re 
+.PHONY	: all clean fclean re core lst dlst gnl printf stk
