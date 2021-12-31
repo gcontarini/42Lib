@@ -10,7 +10,6 @@ void	ft_dlstclear(t_dlist **dlst, void (*del)(void *))
 	{
 		tmp = *dlst;
 		*dlst = (*dlst)->next;
-		(*dlst)->last = NULL;
 		ft_dlstdelone(tmp, del);
 	}
 }

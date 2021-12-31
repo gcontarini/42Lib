@@ -104,6 +104,18 @@ STK		=	ft_istkclean.c	\
 			ft_stkswap.c	\
 			ft_stkswapn.c
 
+############## QUEUE FILES #############
+QUE		=	ft_deque.c	\
+			ft_enque.c	\
+			ft_iqueclean.c	\
+			ft_iqueprint.c	\
+			ft_queclean.c	\
+			ft_quecpy.c	\
+			ft_quecpyn.c	\
+			ft_queget.c	\
+			ft_quelen.c	\
+			ft_questart.c
+
 ################ PATHS #################
 INC	= -I includes/
 POBJS	= obj
@@ -115,6 +127,7 @@ OBJS 	+= 	$(addprefix $(POBJS)/, $(DLST:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(PTF:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(GNL:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(STK:.c=.o))
+OBJS 	+= 	$(addprefix $(POBJS)/, $(QUE:.c=.o))
 
 ############### TARGET #################
 NAME 	= 	libft.a
@@ -138,20 +151,23 @@ all	: $(NAME)
 core	: $(addprefix $(POBJS)/, $(CORE:.c=.o))
 	$(AR) $(NAME) $^
 
-lst	: libft $(addprefix $(POBJS)/, $(LLST:.c=.o))
+lst	: core $(addprefix $(POBJS)/, $(LLST:.c=.o))
 	$(AR) $(NAME) $(addprefix $(POBJS)/, $(LLST:.c=.o))
 
-dlst	: libft $(addprefix $(POBJS)/, $(DLST:.c=.o))
+dlst	: core $(addprefix $(POBJS)/, $(DLST:.c=.o))
 	$(AR) $(NAME) $(addprefix $(POBJS)/, $(DLST:.c=.o))
 
-gnl	: libft $(addprefix $(POBJS)/, $(GNL:.c=.o))
+gnl	: core $(addprefix $(POBJS)/, $(GNL:.c=.o))
 	$(AR) $(NAME) $(addprefix $(POBJS)/, $(GNL:.c=.o))
 
-printf	: libft $(addprefix $(POBJS)/, $(PTF:.c=.o))
+printf	: core $(addprefix $(POBJS)/, $(PTF:.c=.o))
 	$(AR) $(NAME) $(addprefix $(POBJS)/, $(PTF:.c=.o))
 
-stk	: libft lst $(addprefix $(POBJS)/, $(STK:.c=.o))
+stk	: core lst printf $(addprefix $(POBJS)/, $(STK:.c=.o))
 	$(AR) $(NAME) $(addprefix $(POBJS)/, $(STK:.c=.o))
+
+que	: core dlst printf $(addprefix $(POBJS)/, $(QUE:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(QUE:.c=.o))
 
 clean	:
 	$(RM) $(OBJS)
@@ -161,4 +177,4 @@ fclean	: clean
 
 re	: fclean all
 
-.PHONY	: all clean fclean re core lst dlst gnl printf stk
+.PHONY	: all clean fclean re core lst dlst gnl printf stk que
