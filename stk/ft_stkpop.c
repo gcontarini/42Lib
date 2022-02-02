@@ -24,6 +24,8 @@ t_stack_unit	ft_stkpop(t_stack *stack)
 	pop = *(stack->top);
 	tmp = stack->top;
 	stack->top = stack->top->next;
+	if (!stack->top)
+		stack->base = NULL;
 	free(tmp);
 	return (pop);
 }

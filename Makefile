@@ -54,6 +54,17 @@ LLST	=	ft_lstadd_back.c	\
 			ft_lstnew.c			\
 			ft_lstsize.c
 
+########### DOUBLE LIST FILES ###########
+DLST	=	ft_dlstadd_back.c	\
+		ft_dlstadd_front.c	\
+		ft_dlstclear.c	\
+		ft_dlstdelone.c	\
+		ft_dlstiter.c	\
+		ft_dlstlast.c	\
+		ft_dlstmap.c	\
+		ft_dlstnew.c	\
+		ft_dlstsize.c
+
 ############### GNL FILES ###############
 GNL		=	get_next_line.c
 
@@ -93,41 +104,77 @@ STK		=	ft_istkclean.c	\
 			ft_stkswap.c	\
 			ft_stkswapn.c
 
+############## QUEUE FILES #############
+QUE		=	ft_deque.c	\
+			ft_enque.c	\
+			ft_iqueclean.c	\
+			ft_iqueprint.c	\
+			ft_queclean.c	\
+			ft_quecpy.c	\
+			ft_quecpyn.c	\
+			ft_queget.c	\
+			ft_quelen.c	\
+			ft_questart.c
+
 ################ PATHS #################
-INC		= -I includes/
+INC	= -I includes/
 POBJS	= obj
 
 ############### ALL OBJS ###############
 OBJS 	= 	$(addprefix $(POBJS)/, $(CORE:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(LLST:.c=.o))
+OBJS 	+= 	$(addprefix $(POBJS)/, $(DLST:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(PTF:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(GNL:.c=.o))
 OBJS 	+= 	$(addprefix $(POBJS)/, $(STK:.c=.o))
+OBJS 	+= 	$(addprefix $(POBJS)/, $(QUE:.c=.o))
 
 ############### TARGET #################
 NAME 	= 	libft.a
 
 ############# COMPILER OPTS ############
-CC 		= 	gcc 
+CC 	= 	gcc 
 CFLAGS	= 	-Wall -Werror -Wextra
-RM		= 	rm -f
-AR		=	ar rcs
+RM	= 	rm -f
+AR	=	ar rcs
 
 ################ RULES #################
 $(POBJS)/%.o : */%.c
-			$(CC) $(CFLAGS) -c $(INC) $< -o $@
+	@mkdir -p $(POBJS)/
+	$(CC) $(CFLAGS) -c $(INC) $< -o $@
 
 $(NAME)	: $(OBJS)
-		$(AR) $@ $^
+	$(AR) $@ $^
 
-all		: $(NAME)
+all	: $(NAME)
+
+core	: $(addprefix $(POBJS)/, $(CORE:.c=.o))
+	$(AR) $(NAME) $^
+
+lst	: core $(addprefix $(POBJS)/, $(LLST:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(LLST:.c=.o))
+
+dlst	: core $(addprefix $(POBJS)/, $(DLST:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(DLST:.c=.o))
+
+gnl	: core $(addprefix $(POBJS)/, $(GNL:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(GNL:.c=.o))
+
+printf	: core $(addprefix $(POBJS)/, $(PTF:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(PTF:.c=.o))
+
+stk	: core lst printf $(addprefix $(POBJS)/, $(STK:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(STK:.c=.o))
+
+que	: core dlst printf $(addprefix $(POBJS)/, $(QUE:.c=.o))
+	$(AR) $(NAME) $(addprefix $(POBJS)/, $(QUE:.c=.o))
 
 clean	:
-		$(RM) $(OBJS)
+	$(RM) $(OBJS)
 
 fclean	: clean
-		$(RM) $(NAME)
+	$(RM) $(NAME)
 
-re		: fclean all
+re	: fclean all
 
-.PHONY	: all clean fclean re 
+.PHONY	: all clean fclean re core lst dlst gnl printf stk que

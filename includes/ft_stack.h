@@ -29,8 +29,8 @@ typedef struct s_stack
 t_stack			*ft_stkstart(void);
 t_stack			*ft_stkpush(t_stack *stack, void *p);
 t_stack			*ft_stkrpush(t_stack *stack, void *p);
-t_stack			*ft_stkcpy(t_stack *stack, void (*del)(void *));
-t_stack			*ft_stkcpyn(t_stack *stack, size_t n, void (*del)(void *));
+t_stack			*ft_stkcpy(t_stack *stack, void *(*cpy)(void *), void (*del)(void *));
+t_stack			*ft_stkcpyn(t_stack *stack, void *(cpy)(void *), size_t n, void (*del)(void *));
 t_stack_unit	*ft_stkget(t_stack *stack, size_t n);
 t_stack_unit	ft_stkpop(t_stack *stack);
 size_t			ft_stklen(t_stack *stack);
