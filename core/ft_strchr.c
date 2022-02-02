@@ -6,7 +6,7 @@
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 12:01:31 by gcontari          #+#    #+#             */
-/*   Updated: 2021/10/21 14:53:00 by gcontari         ###   ########.fr       */
+/*   Updated: 2022/02/02 18:11:44 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strchr(const char *s, int c)
 	char	*p;
 
 	p = (char *) s;
+	if (!p)
+		return (NULL);
 	while (*p)
 	{
 		if (*p == (char) c)
