@@ -6,7 +6,7 @@
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 18:49:36 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/23 19:19:19 by gcontari         ###   ########.fr       */
+/*   Updated: 2022/02/04 12:35:11 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_stack
 t_stack			*ft_stkstart(void);
 t_stack			*ft_stkpush(t_stack *stack, void *p);
 t_stack			*ft_stkrpush(t_stack *stack, void *p);
-t_stack			*ft_stkcpy(t_stack *stack, void *(*cpy)(void *), void (*del)(void *));
-t_stack			*ft_stkcpyn(t_stack *stack, void *(cpy)(void *), size_t n, void (*del)(void *));
+t_stack			*ft_stkcpy(t_stack *stack, void *(*cpy)(), void (*del)());
+t_stack			*ft_stkcpyn(t_stack *s, void *(c)(), size_t n, void (*d)());
 t_stack_unit	*ft_stkget(t_stack *stack, size_t n);
 t_stack_unit	ft_stkpop(t_stack *stack);
 size_t			ft_stklen(t_stack *stack);

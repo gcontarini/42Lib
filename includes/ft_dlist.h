@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_dlist.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/04 12:30:10 by gcontari          #+#    #+#             */
+/*   Updated: 2022/02/04 12:30:36 by gcontari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_DLIST_H
 # define FT_DLIST_H
 # include "libft.h"
 
 typedef struct s_double_list
 {
-	void			*content;
+	void					*content;
 	struct s_double_list	*next;
 	struct s_double_list	*last;
 }	t_dlist;

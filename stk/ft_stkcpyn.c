@@ -6,17 +6,18 @@
 /*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 19:07:09 by gcontari          #+#    #+#             */
-/*   Updated: 2021/12/23 19:19:41 by gcontari         ###   ########.fr       */
+/*   Updated: 2022/02/04 14:39:30 by gcontari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-t_stack	*ft_stkcpyn(t_stack *stack, void *(*cpy)(void *), size_t n, void (*del)(void *))
+t_stack	*ft_stkcpyn(t_stack *stack, void *(*cpy)(),
+			size_t n, void (*del)())
 {
 	t_stack			*new_stk;
 	t_stack_unit	*curr;
-	void		*p;
+	void			*p;
 
 	new_stk = ft_stkstart();
 	if (!new_stk)

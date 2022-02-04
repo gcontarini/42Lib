@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_iqueprint.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gcontari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/04 14:25:29 by gcontari          #+#    #+#             */
+/*   Updated: 2022/02/04 14:27:09 by gcontari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_queue.h"
 #include "ft_printf.h"
 #define REAR "->|"
@@ -6,7 +18,7 @@
 
 void	ft_iqueprint(t_queue2 *queue)
 {
-	int		content;
+	int				content;
 	t_queue_unit	*curr;
 
 	if (!queue || !queue->rear)
