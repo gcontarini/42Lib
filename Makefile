@@ -128,13 +128,9 @@ PSTK	= $(addprefix $(POBJS)/, $(STK:.c=.o))
 PQUE	= $(addprefix $(POBJS)/, $(QUE:.c=.o))
 
 ############### ALL OBJS ###############
-OBJS 	= 	$(addprefix $(POBJS)/, $(CORE:.c=.o))
-OBJS 	+= 	$(addprefix $(POBJS)/, $(LLST:.c=.o))
-OBJS 	+= 	$(addprefix $(POBJS)/, $(DLST:.c=.o))
-OBJS 	+= 	$(addprefix $(POBJS)/, $(PTF:.c=.o))
-OBJS 	+= 	$(addprefix $(POBJS)/, $(GNL:.c=.o))
-OBJS 	+= 	$(addprefix $(POBJS)/, $(STK:.c=.o))
-OBJS 	+= 	$(addprefix $(POBJS)/, $(QUE:.c=.o))
+OBJS 	= 	$(PCORE) $(PLST) $(PDLST)	\
+			$(PPTF) $(PGNL) $(PSTK)		\
+			$(PQUE)
 
 ############### TARGET #################
 NAME 	= 	libft.a
